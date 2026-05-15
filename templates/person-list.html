@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1> Lista de Pessoas (Artistas/Escritores/Produtores)</h1>
+
+    {% if people %}
+        <p>Foram encontradas {{ people | length }} pessoas. Ordenadas por Nome:</p>
+        <ul>
+            {% for person in people %}
+                <li>
+                    <a href="/people/{{ person.person_id }}">
+                        <b>{{ person.name }}</b>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Nenhuma pessoa encontrada.</p>
+    {% endif %}
+
+    <p><a href="/">← Voltar ao Início</a></p>
+{% endblock %}

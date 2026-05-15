@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1> Música: {{ music.title }}</h1>
+    
+    <p><b>ID da Música:</b> {{ music.music_id }}</p>
+    <p><b>Lançamento:</b> {{ music.release_date }}</p>
+    <p><b>Visualizações:</b> {{ "{:,.0f}".format(music.page_views) }}</p>
+    <p><b>URL:</b> <a href="{{ music.url }}" target="_blank">{{ music.url }}</a></p>
+
+    <hr>
+    
+    <h3>Intervenientes</h3>
+    
+    <p><b>Artistas ({{ artists | length }}):</b>
+        {% for artist in artists %}
+            <a href="/people/{{ artist.person_id }}">{{ artist.name }}</a>{% if not loop.last %}, {% endif %}
+        {% else %}
+            N/A
+        {% endfor %}
+    </p>
+
+    <p><b>Escritores ({{ writers | length }}):</b>
+        {% for writer in writers %}
+            <a href="/people/{{ writer.person_id }}">{{ writer.name }}</a>{% if not loop.last %}, {% endif %}
+        {% else %}
+            N/A
+        {% endfor %}
+    </p>
+    
+    <p><b>Produtores ({{ producers | length }}):</b>
+        {% for producer in producers %}
+            <a href="/people/{{ producer.person_id }}">{{ producer.name }}</a>{% if not loop.last %}, {% endif %}
+        {% else %}
+            N/A
+        {% endfor %}
+    </p>
+    
+    <h3>Tags Associadas ({{ tags | length }})</h3>
+    <p>
+        {% for tag in tags %}
+            <a href="/tags/">#{{ tag.tag }}</a>{% if not loop.last %}, {% endif %}
+        {% else %}
+            Nenhuma tag associada.
+        {% endfor %}
+    </p>
+
+    <hr>
+    
+    <h3>Letra (Lyrics)</h3>
+    <pre>{{ music.lyrics }}</pre>
+
+    <p><a href="/musics/">← Voltar à Lista de Músicas</a></p>
+{% endblock %}

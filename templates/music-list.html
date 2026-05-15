@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1> Lista de Todas as Músicas</h1>
+
+    {% if musics %}
+        <p>Foram encontradas {{ musics | length }} músicas. Ordenadas por Visualizações (Decrescente):</p>
+        
+        <ul>
+            {% for music in musics %}
+                <li>
+                    <a href="/musics/{{ music.music_id }}">
+                        <b>{{ music.title }}</b>
+                    </a> 
+                    (Lançamento: {{ music.release_date }}, Visualizações: {{ "{:,.0f}".format(music.page_views) }})
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Nenhuma música encontrada.</p>
+    {% endif %}
+
+    <p><a href="/">← Voltar ao Início</a></p>
+{% endblock %}

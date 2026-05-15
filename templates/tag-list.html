@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1> Lista de Tags</h1>
+
+    {% if tags %}
+        <p>Foram encontradas {{ tags | length }} tags. Ordenadas por Nome:</p>
+        <ul>
+            {% for tag in tags %}
+                <li>
+                    #<b>{{ tag.tag }}</b>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Nenhuma tag encontrada.</p>
+    {% endif %}
+
+    <p><a href="/">← Voltar ao Início</a></p>
+{% endblock %}

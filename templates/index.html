@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>💿 Discografia de Taylor Swift</h1>
+
+    <h2> Estatísticas da Base de Dados</h2>
+    {% if stats %}
+        <ul>
+            <li><b>Álbuns:</b> {{ stats.n_albums }}</li>
+            <li><b>Músicas:</b> {{ stats.n_musics }}</li>
+            <li><b>Pessoas (Artistas/Escritores/Produtores):</b> {{ stats.n_people }}</li>
+            <li><b>Tags:</b> {{ stats.n_tags }}</li>
+        </ul>
+    {% endif %}
+
+    <hr>
+    
+    <h2> Navegação</h2>
+    <ul>
+        <li><a href="/albums/">Ver Lista de Álbuns</a></li>
+        <li><a href="/musics/">Ver Lista de Músicas</a></li>
+        <li><a href="/people/">Ver Lista de Pessoas</a></li>
+        <li><a href="/tags/">Ver Lista de Tags</a></li>
+    </ul>
+
+    <hr>
+    
+    <h2> Interrogações SQL (2.2)</h2>
+    <p>Clique para ver o resultado de cada interrogação:</p>
+    <ol>
+        <li><a href="/query1/">Nome e visualizações das músicas</a></li>
+        <li><a href="/query2/">Álbuns cujo total de visualizações está entre 100000 e 275000</a></li>
+        <li><a href="/query3/">URLs das músicas cuja letra contem 'smile'</a></li>
+        <li><a href="/query4/">Músicas com 2 ou mais artistas</a></li>
+        <li><a href="/query5/">Contagem de músicas por escritor </a></li>
+        <li><a href="/query6/">URL do álbum com mais músicas</a></li>
+        <li><a href="/query7/">Pessoas que são apenas artistas</a></li>
+        <li><a href="/query8/">Pares Pessoa-Função (Artista, Escritor, Produtor)</a></li>
+        <li><a href="/query9/">Álbuns onde todas as músicas têm a tag 'Pop'</a></li>
+        <li><a href="/query10/">Músicas com visualizações acima da média da sua tag</a></li>
+    </ol>
+{% endblock %}

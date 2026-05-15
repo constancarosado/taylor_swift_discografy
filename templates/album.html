@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1> Detalhes do Álbum: {{ album.title }}</h1>
+    
+    <p><b>ID do Álbum:</b> {{ album.album_id }}</p>
+    <p><b>Categoria:</b> {{ album.category }}</p>
+    <p><b>URL:</b> <a href="{{ album.url }}" target="_blank">{{ album.url }}</a></p>
+
+    <h2>Músicas Incluídas ({{ songs | length }} faixas)</h2>
+    
+    {% if songs %}
+        <table>
+            <tr>
+                <th>Nº da Faixa</th>
+                <th>Título</th>
+                <th>Visualizações</th>
+            </tr>
+            {% for song in songs %}
+            <tr>
+                <td>{{ song.track_number }}</td>
+                <td><a href="/musics/{{ song.music_id }}"><b>{{ song.title }}</b></a></td>
+                <td>{{ "{:,.0f}".format(song.page_views) }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>Nenhuma música encontrada neste álbum.</p>
+    {% endif %}
+
+    <p><a href="/albums/">← Voltar à Lista de Álbuns</a></p>
+{% endblock %}

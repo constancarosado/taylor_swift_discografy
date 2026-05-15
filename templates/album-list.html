@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Lista de Todos os Álbuns</h1>
+
+    {% if albums %}
+        <p>Foram encontrados {{ albums | length }} álbuns:</p>
+        <ul>
+            {% for album in albums %}
+                <li>
+                    <a href="/albums/{{ album.album_id }}">
+                        <b>{{ album.title }}</b>
+                    </a> 
+                    (Categoria: {{ album.category }})
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Nenhum álbum encontrado.</p>
+    {% endif %}
+
+    <p><a href="/">← Voltar ao Início</a></p>
+{% endblock %}

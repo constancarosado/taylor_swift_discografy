@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1> Pessoa: {{ person.name }}</h1>
+    
+    <p><b>ID da Pessoa:</b> {{ person.person_id }}</p>
+
+    <hr>
+    
+    <h3>Músicas por Papel</h3>
+    
+    <h4>Artista em ({{ artist_in | length }})</h4>
+    <ul>
+        {% for music in artist_in %}
+            <li><a href="/musics/{{ music.music_id }}">{{ music.title }}</a></li>
+        {% else %}
+            <li>Não participa como Artista.</li>
+        {% endfor %}
+    </ul>
+
+    <h4>Escritor em ({{ writer_in | length }})</h4>
+    <ul>
+        {% for music in writer_in %}
+            <li><a href="/musics/{{ music.music_id }}">{{ music.title }}</a></li>
+        {% else %}
+            <li>Não participa como Escritor.</li>
+        {% endfor %}
+    </ul>
+
+    <h4>Produtor em ({{ producer_in | length }})</h4>
+    <ul>
+        {% for music in producer_in %}
+            <li><a href="/musics/{{ music.music_id }}">{{ music.title }}</a></li>
+        {% else %}
+            <li>Não participa como Produtor.</li>
+        {% endfor %}
+    </ul>
+
+    <p><a href="/people/">← Voltar à Lista de Pessoas</a></p>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Resultados da Interrogação SQL</h1>
+    <h2>{{ query_title }}</h2>
+    
+    {% if results %}
+        <p>Foram encontrados {{ results | length }} resultados:</p>
+        <table>
+            <tr>
+                {# PASSO 1: CRIA OS CABEÇALHOS DA TABELA #}
+                {% for col_name in results[0].keys() %}
+                    <th>{{ col_name }}</th>
+                {% endfor %}
+            </tr>
+            
+            {% for row in results %}
+            <tr>
+                {# PASSO 2: RECORRE NOVAMENTE AOS NOMES DAS COLUNAS (KEYS) PARA MOSTRAR OS VALORES DA LINHA #}
+                {% for col_name in results[0].keys() %} 
+                    <td>
+                        {# Verifica se a coluna é a 'page_views' para formatar o número #}
+                        {% if col_name == 'page_views' %} 
+                            {{ "{:,.0f}".format(row[col_name]) }}
+                        {% else %}
+                            {# Usa o nome da coluna (col_name) para aceder ao valor real (row[col_name]) #}
+                            {{ row[col_name] }}
+                        {% endif %}
+                    </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>Nenhum resultado encontrado para esta interrogação.</p>
+    {% endif %}
+
+    <hr>
+    <p><a href="/">← Voltar à Página Inicial</a></p>
+{% endblock %}
